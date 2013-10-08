@@ -1,0 +1,77 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>mg-drag.js Tester</title>
+	<script type="text/javascript" src="mg-drag-core.js"></script>
+	<script>
+		//Usage of MGDragObj
+		function init()
+		{
+			//Get the elements we want ready
+			var element1 = document.getElementById("elem1");
+			var element2 = document.getElementById("elem2");
+			var element2_handle = document.getElementById("elem2_handle");
+			
+			//Pass the elements into new instances of MGDragObject
+			var dragObj1 = new MGDragObject(element1, null, null, null, updateInfo1);
+			var dragObj2 = new MGDragObject(element2, element2_handle, null, updateInfo2);
+			
+			//When you are destroying a drag object don't forget to call its dispose() method!
+		}
+		
+		//Examples of using the events - caller parameter is received for the event, that's the object that called the event
+		function updateInfo1(caller)
+		{
+			var element1 = document.getElementById("elem1");
+			var info = document.getElementById("info1");
+			info.innerHTML = "Element 1 Location: ( " + element1.offsetLeft + ", " + element1.offsetTop + " )";
+		}
+		function updateInfo2(caller)
+		{
+			var element2 = document.getElementById("elem2");
+			var info = document.getElementById("info2");
+			info.innerHTML = "Element 2 Location: ( " + element2.offsetLeft + ", " + element2.offsetTop + " )";
+		}
+	</script>
+	<style type="text/css">
+		#elem1
+		{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: #00FF00;
+			top: 100px;
+			left: 100px;
+			border: 1px solid #000000;
+			color: #000000;
+			cursor: pointer;
+		}
+		#elem2
+		{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: #0000FF;
+			top: 300px;
+			left: 300px;
+			border: 1px solid #000000
+		}
+		#elem2_handle
+		{
+			width: 90px;
+			height: 20px;
+			background-color: #0055FF;
+			color: #FFFFFF;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body onload="init()">
+	<h3>MGDragObject Tester</h3>
+	<h5>Drag the boxes around to see updated informtion on where the objects moved to</h5>
+	<div id="info1"></div>
+	<div id="info2"></div>
+	<div id="elem1">Grab me anywhere</div>
+	<div id="elem2"><div id="elem2_handle">Grab me here</div></div>
+</body>
+</html>
